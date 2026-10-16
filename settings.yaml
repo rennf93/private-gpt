@@ -16,6 +16,19 @@ server:
     # 'secret' is the username and 'key' is the password for basic auth by default
     # If the auth is enabled, this value must be set in the "Authorization" header of the request.
     secret: "Basic c2VjcmV0OmtleQ=="
+  # Optional request security (fastapi-guard). Needs `pip install "private-gpt[security]"`.
+  # Rate limits, IP allow/deny lists and attack detection on path, query and headers.
+  # Request bodies are not scanned unless scan_body is true.
+  security:
+    enabled: ${PGPT_SECURITY_ENABLED:false}
+    # Only these proxies may set X-Forwarded-For. Add your reverse proxy's IP or CIDR.
+    trusted_proxies: ["127.0.0.1", "::1"]
+    rate_limit: ${PGPT_SECURITY_RATE_LIMIT:100}
+    rate_limit_window: ${PGPT_SECURITY_RATE_LIMIT_WINDOW:60}
+    # whitelist: ["10.0.0.0/8"]  # when set, every other IP gets a 403
+    blacklist: []
+    penetration_detection: true
+    scan_body: false
   network:
     offline_mode: ${PGPT_OFFLINE_MODE,HF_HUB_OFFLINE:false}
     proxy:

@@ -50,6 +50,42 @@ PGPT_SETTINGS_FOLDER=/path/to/settings private-gpt serve
 
 ---
 
+## Request security (optional)
+
+PrivateGPT can screen every HTTP request with [fastapi-guard](https://github.com/Guard-Core/fastapi-guard). It is **off by default** and adds nothing to the app until you enable it. It is useful when the server is reachable from a network, where the optional basic `auth` secret is the only other protection.
+
+When enabled it provides per-IP rate limiting, IP allow and deny lists, and blocking of requests whose path, query string or headers match known attack patterns. **Request bodies are not scanned** by default, so documents, prompts and chat messages are never inspected. Streaming responses pass through unbuffered, and CORS is still handled by the `server.cors` section, outside the guard.
+
+Install the extra (it is already part of the `core` install) and enable the section:
+
+```bash
+uv sync --extra security
+```
+
+```yaml
+server:
+  security:
+    enabled: true
+    trusted_proxies: ["127.0.0.1", "::1"]
+    rate_limit: 100
+    rate_limit_window: 60
+    whitelist: ["10.0.0.0/8"]
+    blacklist: []
+    penetration_detection: true
+    scan_body: false
+```
+
+- `trusted_proxies`: the only addresses whose `X-Forwarded-For` header is believed. The default is loopback, so a forged header from a direct client is ignored. If PrivateGPT runs behind a reverse proxy, add the proxy's IP or CIDR range, otherwise every request is attributed to the proxy. While security is enabled, `private-gpt serve` passes the same list to Uvicorn as `forwarded_allow_ips` (and turns Uvicorn's proxy headers off when the list is empty), so `FORWARDED_ALLOW_IPS` cannot make Uvicorn trust a proxy the guard does not. If you start Uvicorn yourself, keep `FORWARDED_ALLOW_IPS` in line with this list.
+- `rate_limit` and `rate_limit_window`: allowed requests per client IP per window in seconds. Over the limit returns `429`.
+- `whitelist`: when set, every IP outside it gets a `403`. `blacklist` always gets a `403`.
+- `penetration_detection`: blocks matching requests with a `400`. Repeated hits can ban the IP temporarily.
+- `scan_body`: also scan request bodies. Leave it off unless you know your payloads are safe to match.
+- `exclude_paths`: paths that skip attack detection and the other content checks (health and API docs by default). Rate limiting and the IP allow and deny lists still apply to them, so a health probe from an address outside `whitelist` gets a `403`.
+
+Counters and bans are kept in memory, per worker process. If `enabled` is true and `fastapi-guard` is not installed, startup fails with an explicit error.
+
+---
+
 ## Data settings
 
 ### `PGPT_ENABLE_VISION_FALLBACK`

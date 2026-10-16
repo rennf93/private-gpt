@@ -47,6 +47,7 @@ from private_gpt.server.primitives.primitives_router import primitives_router
 from private_gpt.server.principal import Principal
 from private_gpt.server.skills.skill_router import skill_router
 from private_gpt.server.tools.tool_router import tool_router
+from private_gpt.server.utils.security import install_security_middleware
 from private_gpt.settings.settings import Settings
 from private_gpt.utils.runner import get_version
 
@@ -258,6 +259,12 @@ def create_app(root_injector: Injector) -> FastAPI:
             await static_files(scope, receive, send)
 
         app.mount(ui_path or "/", _ui_app, name="ui")
+
+    # Added before CORS so CORS stays outermost: guard rejections (429, 403)
+    # still carry the CORS headers the browser needs to read them.
+    if settings.server.security.enabled:
+        logger.info("Setting up request security middleware")
+        install_security_middleware(app, settings.server.security)
 
     if settings.server.cors.enabled:
         logger.debug("Setting up CORS middleware")

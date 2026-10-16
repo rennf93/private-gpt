@@ -907,6 +907,21 @@ wheels = [
 ]
 
 [[package]]
+name = "fastapi-guard"
+version = "8.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "fastapi" },
+    { name = "guard-core" },
+    { name = "starlette" },
+    { name = "uvicorn" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ff/60/27001cbd83b1067380d0d8ab9b83d2e18fdcd89ad2168c8cfffb95bebca4/fastapi_guard-8.1.1.tar.gz", hash = "sha256:d863be886276021440031829b1447f51b22f605e0f893a184469720a7ef9e0e6", size = 70890, upload-time = "2026-10-15T13:16:10.109Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/00/47/79200f1c7a824be0eb34b0fc58019db760588cbbd89b1e06a62de597e9e1/fastapi_guard-8.1.1-py3-none-any.whl", hash = "sha256:933c8588a1c16c41acdd6b9bf0abb73a9a8aa19f0372dc9f5ff8b2cc6f54d5ae", size = 36778, upload-time = "2026-10-15T13:16:08.596Z" },
+]
+
+[[package]]
 name = "fastar"
 version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1144,6 +1159,24 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/75/7a/766149dcfa2dfa81835bf7df623944c1f636a15fcb9b6138ebe29baf0bc6/grpcio-1.67.1-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:1a65b503d008f066e994f34f456e0647e5ceb34cfcec5ad180b1b44020ad4970", size = 6161799, upload-time = "2024-10-29T06:24:22.604Z" },
     { url = "https://files.pythonhosted.org/packages/09/13/5b75ae88810aaea19e846f5380611837de411181df51fd7a7d10cb178dcb/grpcio-1.67.1-cp311-cp311-win32.whl", hash = "sha256:e29ca27bec8e163dca0c98084040edec3bc49afd10f18b412f483cc68c712744", size = 3616330, upload-time = "2024-10-29T06:24:25.775Z" },
     { url = "https://files.pythonhosted.org/packages/aa/39/38117259613f68f072778c9638a61579c0cfa5678c2558706b10dd1d11d3/grpcio-1.67.1-cp311-cp311-win_amd64.whl", hash = "sha256:786a5b18544622bfb1e25cc08402bd44ea83edfb04b93798d85dca4d1a0b5be5", size = 4354535, upload-time = "2024-10-29T06:24:28.614Z" },
+]
+
+[[package]]
+name = "guard-core"
+version = "4.4.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "cachetools" },
+    { name = "maxminddb" },
+    { name = "pydantic" },
+    { name = "redis" },
+    { name = "requests" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/cc/3c/4d1f131a235ef84e644e0e1a9eec56be77302cc15094ca701a1d2e0f32e4/guard_core-4.4.0.tar.gz", hash = "sha256:2125e2a1ad55d9ebbad4cae95fe4b1d5afd77365226bfa2ed3a740c2f4574154", size = 811933, upload-time = "2026-10-15T12:29:04.728Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1b/bc/44604837e4fc8efb9022370cf815a6b7bc001f604abf12c376ddb4ccc0a1/guard_core-4.4.0-py3-none-any.whl", hash = "sha256:fd63873148c8d9f0b84536001f3357e25ce0e70abaff136a13275d06da691575", size = 652368, upload-time = "2026-10-15T12:29:02.745Z" },
 ]
 
 [[package]]
@@ -2204,6 +2237,29 @@ wheels = [
 ]
 
 [[package]]
+name = "maxminddb"
+version = "3.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b9/34/0923a42cce579398890058775ea145214acf80dd3340c26cfb0f16989300/maxminddb-3.2.0.tar.gz", hash = "sha256:d28e0073fd1dd637c8b95947bc864b5625eca9f8f2db1538145e33b2a1cd4b92", size = 531318, upload-time = "2026-09-10T22:28:06.364Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6a/e6/cec175ebebaadfb489ea9d7f69a0b3c419eb1b68e8885df7398e1307af9f/maxminddb-3.2.0-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:e54c0c7abbafb30cfe415686ed339d77525de5c1f026911fe77ad3deebba4bdb", size = 56415, upload-time = "2026-09-10T22:26:04.633Z" },
+    { url = "https://files.pythonhosted.org/packages/f7/9f/55bd00ecbadc7f0a41efd39fda4c6ca51d875418dd35bcbb2528d9e24b13/maxminddb-3.2.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:f4c2b4c35d42492fadad9d832f9912441fbac9f5f4263533ea3019ef56783a31", size = 38573, upload-time = "2026-09-10T22:26:05.887Z" },
+    { url = "https://files.pythonhosted.org/packages/b5/88/d4d0b73b12bd66de236a2092d695bedb5f87b262d09bbf1a9ff0cd1402f3/maxminddb-3.2.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:b0c9f0d934257cc4bfa223bb98c5661582d6128967a1c6e5effe04809b2b1c04", size = 38286, upload-time = "2026-09-10T22:26:07.38Z" },
+    { url = "https://files.pythonhosted.org/packages/61/b0/61b8c7964c84cfbd5e6449932c1f782fc8eb71d8b944f7385ad17f52495a/maxminddb-3.2.0-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:76ec42a309d4cd1c8fb1982eaa4513a4f29689f5e602d1d1b5d590957a34d0a4", size = 104515, upload-time = "2026-09-10T22:26:08.58Z" },
+    { url = "https://files.pythonhosted.org/packages/98/a0/68a8929634c907067649596738cf0d56c7eb673139d00ce798b1f0796eb2/maxminddb-3.2.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:05f0c8b3c71a91da36600184fd4b74b6a1eca2ed163d6ce9b1cff42536569c66", size = 101614, upload-time = "2026-09-10T22:26:09.923Z" },
+    { url = "https://files.pythonhosted.org/packages/15/7c/0f5ef75211688b2d618134993b4bed59f561a0c17b5654e3948782323955/maxminddb-3.2.0-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:13d2280ec354b9c5384ac3f25a6e8c040ec69da6de491cfdb47ae88a7b41164a", size = 101532, upload-time = "2026-09-10T22:26:11.426Z" },
+    { url = "https://files.pythonhosted.org/packages/67/a6/f655b9ceeb59ad92c44765d18ff013502d1ee9334844ba11361dac5c6ac8/maxminddb-3.2.0-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:7e6f2eb9524210b1be25bfcc9c688d8802cdbfa8a53679c985cfc0ad75286758", size = 99558, upload-time = "2026-09-10T22:26:12.764Z" },
+    { url = "https://files.pythonhosted.org/packages/07/72/9a0490121b0b8ca5b4e8390e85e709c6b77d6177d5a9b820e0cf8e5e90de/maxminddb-3.2.0-cp311-cp311-win32.whl", hash = "sha256:c8876e79fc245c249b761740a54425dcf86864018528720a3af3fb1d3e24e34f", size = 37482, upload-time = "2026-09-10T22:26:14.064Z" },
+    { url = "https://files.pythonhosted.org/packages/b6/37/d97b01542718ffe32aef8897c542fb2692645ac71ff82f58090b6d98ca25/maxminddb-3.2.0-cp311-cp311-win_amd64.whl", hash = "sha256:d624dc0b9e849a1eb85c35ed8d1c91d1d35fbe3951c7ee93e1ba5fae9b55440a", size = 38993, upload-time = "2026-09-10T22:26:15.277Z" },
+    { url = "https://files.pythonhosted.org/packages/ba/0a/86841e310666342248defcb14ee80120bd40dba851ed4a223201c686f373/maxminddb-3.2.0-cp311-cp311-win_arm64.whl", hash = "sha256:b419c808071c5b0140aa3af278638432bb2827bd58e4165d7f8cb2a525b08269", size = 36723, upload-time = "2026-09-10T22:26:16.499Z" },
+    { url = "https://files.pythonhosted.org/packages/ad/5a/bb6b22179f35bb67554fcaf0c954b0727505cfd4746c4a7604ad9cee2aa9/maxminddb-3.2.0-pp311-pypy311_pp73-macosx_10_15_x86_64.whl", hash = "sha256:eeca4179c74fa30656ca57e66b7b6f9b9fc371eed088b70e36744f9af884f8dc", size = 37348, upload-time = "2026-09-10T22:27:59.923Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/be/36a5d02625a9c008190c9df88f448249ce7b9f91b5075c9231a8fb864afa/maxminddb-3.2.0-pp311-pypy311_pp73-macosx_11_0_arm64.whl", hash = "sha256:86b54eb7e4834dcf7fb914741091646b5c860a13f793fd890e91269e1a6f4175", size = 37023, upload-time = "2026-09-10T22:28:01.203Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/72/7cac81037f12be0d93b2ad5cb10cd3cee2ea9363115469297b5b75472631/maxminddb-3.2.0-pp311-pypy311_pp73-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:c7e6890d6a4e4b382f2a684fe78517aaf35006c4ae35553837edf6da2c24e3a9", size = 41777, upload-time = "2026-09-10T22:28:02.419Z" },
+    { url = "https://files.pythonhosted.org/packages/25/b0/2da8566401f46085d2f5576714c91f363173b1c9eceefa2cd39fbe8c487c/maxminddb-3.2.0-pp311-pypy311_pp73-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:a6bfa93506b5c5297182668f126104fbacd8a2d7b80eac2eb0e4aab1c2edb63f", size = 40704, upload-time = "2026-09-10T22:28:03.731Z" },
+    { url = "https://files.pythonhosted.org/packages/bc/76/548c1a80a8f5da4a33ee32255b0be22a6ee511d6e1de22cd5d41ad9858ff/maxminddb-3.2.0-pp311-pypy311_pp73-win_amd64.whl", hash = "sha256:c4b38d1bdce185febdebc68e170bd048cdc122084b42e4f37d85c720f17583d3", size = 39054, upload-time = "2026-09-10T22:28:04.993Z" },
+]
+
+[[package]]
 name = "mcp"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3206,6 +3262,7 @@ core = [
     { name = "asyncpg" },
     { name = "beautifulsoup4" },
     { name = "chardet" },
+    { name = "fastapi-guard" },
     { name = "hf-transfer" },
     { name = "html2text" },
     { name = "huggingface-hub" },
@@ -3509,6 +3566,9 @@ sdk-openai = [
     { name = "openai" },
     { name = "openai-harmony" },
 ]
+security = [
+    { name = "fastapi-guard" },
+]
 storage = [
     { name = "aiobotocore" },
     { name = "boto3" },
@@ -3608,6 +3668,7 @@ requires-dist = [
     { name = "celery-types", marker = "extra == 'typecheck'", specifier = ">=0.20.0,<0.21" },
     { name = "chardet", marker = "extra == 'ingest-core'", specifier = ">=5.2.0,<6" },
     { name = "fastapi", extras = ["all"], specifier = ">=0.136.0" },
+    { name = "fastapi-guard", marker = "extra == 'security'", specifier = ">=8.1.1,<9" },
     { name = "ffmpeg", marker = "extra == 'media-video'", specifier = ">=1.4" },
     { name = "ffprobe", marker = "extra == 'media-video'", specifier = ">=0.5" },
     { name = "flower", marker = "extra == 'queue-celery'", specifier = ">=2.0.1,<3" },
@@ -3686,7 +3747,7 @@ requires-dist = [
     { name = "private-gpt", extras = ["media-core"], marker = "extra == 'media-image'" },
     { name = "private-gpt", extras = ["media-core"], marker = "extra == 'media-video'" },
     { name = "private-gpt", extras = ["media-image", "media-audio", "media-video"], marker = "extra == 'media'" },
-    { name = "private-gpt", extras = ["model-openai", "model-openai-compatible", "tokenizer", "vectorstore-qdrant", "ingest", "tools"], marker = "extra == 'core'" },
+    { name = "private-gpt", extras = ["model-openai", "model-openai-compatible", "tokenizer", "vectorstore-qdrant", "ingest", "tools", "security"], marker = "extra == 'core'" },
     { name = "private-gpt", extras = ["observability-arize-phoenix", "observability-opik"], marker = "extra == 'observability'" },
     { name = "private-gpt", extras = ["queue-celery", "queue-rabbitmq"], marker = "extra == 'queue'" },
     { name = "private-gpt", extras = ["redis-core"], marker = "extra == 'redis'" },
@@ -3738,7 +3799,7 @@ requires-dist = [
     { name = "types-tqdm", marker = "extra == 'typecheck'", specifier = ">=4.67.0.20250809" },
     { name = "watchdog", specifier = ">=4.0.1,<5" },
 ]
-provides-extras = ["sdk-openai", "llm-openai", "llm-openai-compatible", "llm-mistral", "llm-anthropic", "tokenizer-local", "tokenizer", "embedding-openai", "embedding-openai-compatible", "model-openai", "model-openai-compatible", "ingest-core", "ingest-documents", "ingest-markitdown", "ingest-pdf-inspector", "ingest-markup", "ingest", "storage-s3", "storage-smb", "storage", "vectorstore-qdrant", "nodestore-postgres", "indexstore-postgres", "redis-core", "redis", "database-core", "database-postgres", "database-mysql", "database-mssql", "database-db2", "database", "queue-celery", "queue-rabbitmq", "queue", "data-pandas", "data-pandasai", "tool-mcp", "tool-tabular", "tool-database", "tool-web-scraping", "tools", "media-core", "media-image", "media-audio", "media-video", "media", "observability-arize-phoenix", "observability-opik", "observability", "core", "lint", "test", "typecheck", "dev"]
+provides-extras = ["sdk-openai", "llm-openai", "llm-openai-compatible", "llm-mistral", "llm-anthropic", "tokenizer-local", "tokenizer", "embedding-openai", "embedding-openai-compatible", "model-openai", "model-openai-compatible", "ingest-core", "ingest-documents", "ingest-markitdown", "ingest-pdf-inspector", "ingest-markup", "ingest", "storage-s3", "storage-smb", "storage", "vectorstore-qdrant", "nodestore-postgres", "indexstore-postgres", "redis-core", "redis", "database-core", "database-postgres", "database-mysql", "database-mssql", "database-db2", "database", "queue-celery", "queue-rabbitmq", "queue", "data-pandas", "data-pandasai", "tool-mcp", "tool-tabular", "tool-database", "tool-web-scraping", "tools", "media-core", "media-image", "media-audio", "media-video", "media", "observability-arize-phoenix", "observability-opik", "observability", "security", "core", "lint", "test", "typecheck", "dev"]
 
 [[package]]
 name = "prometheus-client"

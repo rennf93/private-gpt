@@ -69,6 +69,74 @@ class AuthSettings(BaseModel):
     )
 
 
+class SecuritySettings(BaseModel):
+    """Optional request security (fastapi-guard) configuration.
+
+    Disabled by default. When enabled, a pure ASGI middleware screens every HTTP
+    request before it reaches the routers: per-IP rate limiting, IP allow and deny
+    lists, and penetration detection on the path, query string and headers.
+    Request bodies (documents, prompts, chat messages) are never scanned unless
+    ``scan_body`` is explicitly set. Requires the ``security`` extra
+    (``pip install "private-gpt[security]"``).
+
+    Rate limit counters and bans are kept in memory, per worker process.
+
+    For more details, see:
+    # * https://github.com/Guard-Core/fastapi-guard
+    """
+
+    enabled: bool = Field(
+        description="Flag indicating if the request security middleware is enabled.",
+        default=False,
+    )
+    trusted_proxies: list[str] = Field(
+        description="IPs or CIDR ranges of reverse proxies whose X-Forwarded-For "
+        "header is trusted to carry the real client IP. Defaults to loopback only, "
+        "so a forged X-Forwarded-For sent by a direct client is ignored.",
+        default=["127.0.0.1", "::1"],
+    )
+    trusted_proxy_depth: int = Field(
+        description="How many trusted proxies are expected in the X-Forwarded-For chain.",
+        default=1,
+        ge=1,
+    )
+    rate_limit: int = Field(
+        description="Maximum number of requests per client IP in each rate limit window.",
+        default=100,
+        ge=1,
+    )
+    rate_limit_window: int = Field(
+        description="Rate limit window, in seconds.",
+        default=60,
+        ge=1,
+    )
+    whitelist: list[str] | None = Field(
+        description="If set, only these IPs or CIDR ranges can reach the server "
+        "(everything else gets a 403). Null disables the allowlist.",
+        default=None,
+    )
+    blacklist: list[str] = Field(
+        description="IPs or CIDR ranges that are always rejected with a 403.",
+        default=[],
+    )
+    penetration_detection: bool = Field(
+        description="Block requests whose path, query string or headers match known "
+        "attack patterns (SQL injection, XSS, path traversal and similar).",
+        default=True,
+    )
+    scan_body: bool = Field(
+        description="Also scan request bodies for attack patterns. Off by default "
+        "because bodies carry documents, prompts and chat messages that legitimately "
+        "contain code and markup.",
+        default=False,
+    )
+    exclude_paths: list[str] = Field(
+        description="Paths that skip attack detection and the other content checks. "
+        "Rate limiting and the IP allow and deny lists still apply to them.",
+        default=["/health", "/docs", "/redoc", "/openapi.json"],
+    )
+
+
 class ApiDocSettings(BaseModel):
     """Swagger configuration.
 
@@ -329,6 +397,10 @@ class ServerSettings(BaseModel):
     auth: AuthSettings = Field(
         description="Authentication configuration",
         default_factory=lambda: AuthSettings(enabled=False, secret="secret-key"),
+    )
+    security: SecuritySettings = Field(
+        description="Optional request security (rate limiting, IP policy, attack detection)",
+        default_factory=lambda: SecuritySettings(),
     )
     network: NetworkSettings = Field(
         description="Network configuration",

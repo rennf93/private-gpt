@@ -292,10 +292,18 @@ observability = [
 ]
 
 # ---------------------------------------------------------------------------
+# Security
+# ---------------------------------------------------------------------------
+# Optional request security middleware (server.security in settings.yaml)
+security = [
+    "fastapi-guard>=8.1.1,<9",
+]
+
+# ---------------------------------------------------------------------------
 # Install flavors
 # ---------------------------------------------------------------------------
 core = [
-    "private-gpt[model-openai,model-openai-compatible,tokenizer,vectorstore-qdrant,ingest,tools]",
+    "private-gpt[model-openai,model-openai-compatible,tokenizer,vectorstore-qdrant,ingest,tools,security]",
 ]
 
 # ---------------------------------------------------------------------------

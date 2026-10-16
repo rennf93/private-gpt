@@ -6,6 +6,7 @@ from pathlib import Path
 import typer
 import uvicorn
 
+from private_gpt.server.utils.security import uvicorn_proxy_kwargs
 from private_gpt.settings.settings import settings
 from private_gpt.settings.settings_loader import active_profiles
 
@@ -63,6 +64,7 @@ def serve_command(
             log_level=log_level,
             log_config=None,
             loop="asyncio",
+            **uvicorn_proxy_kwargs(s.server.security),
         )
     finally:
         if pid_file and pid_file.exists():
