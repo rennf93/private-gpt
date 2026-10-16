@@ -54,7 +54,7 @@ PGPT_SETTINGS_FOLDER=/path/to/settings private-gpt serve
 
 PrivateGPT can screen every HTTP request with [fastapi-guard](https://github.com/Guard-Core/fastapi-guard). It is **off by default** and adds nothing to the app until you enable it. It is useful when the server is reachable from a network, where the optional basic `auth` secret is the only other protection.
 
-When enabled it provides per-IP rate limiting, IP allow and deny lists, and blocking of requests whose path, query string or headers match known attack patterns. **Request bodies are not scanned** by default, so documents, prompts and chat messages are never inspected. Streaming responses pass through unbuffered, and CORS is still handled by the `server.cors` section, outside the guard.
+When enabled it provides per-IP rate limiting, IP allow and deny lists, and blocking of requests whose path, query string or headers match known attack patterns (every detection category except `ssrf`, because browsers send the page address as `Referer` and guard-core 4.4.0 flags localhost and LAN addresses in it). **Request bodies are not scanned** by default, so documents, prompts and chat messages are never inspected. Streaming responses pass through unbuffered, and CORS is still handled by the `server.cors` section, outside the guard.
 
 Install the extra (it is already part of the `core` install) and enable the section:
 

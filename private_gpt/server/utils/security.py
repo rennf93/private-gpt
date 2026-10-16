@@ -16,6 +16,7 @@ def install_security_middleware(app: "FastAPI", settings: "SecuritySettings") ->
     """Mount the pure ASGI fastapi-guard middleware on the app."""
     try:
         from guard import PureASGISecurityMiddleware, SecurityConfig
+        from guard_core.handlers.suspatterns_handler import ALL_DETECTION_CATEGORIES
     except ImportError as e:
         raise RuntimeError(
             "server.security.enabled is true but fastapi-guard is not installed. "
@@ -32,6 +33,9 @@ def install_security_middleware(app: "FastAPI", settings: "SecuritySettings") ->
         blacklist=tuple(settings.blacklist),
         enable_penetration_detection=settings.penetration_detection,
         detection_scan_body=settings.scan_body,
+        # Browsers send the page address as Referer, and guard-core 4.4.0 flags
+        # localhost and LAN addresses in it as ssrf.
+        enabled_detection_categories=frozenset(ALL_DETECTION_CATEGORIES) - {"ssrf"},
         exclude_paths=settings.exclude_paths,
         # Not part of this feature: no extra response headers (HSTS, frame options)
         security_headers={"enabled": False},

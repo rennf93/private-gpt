@@ -172,6 +172,36 @@ async def test_attack_in_query_is_blocked(make_app: Callable[..., FastAPI]) -> N
     assert response.status_code == 400
 
 
+@pytest.mark.parametrize(
+    "referer",
+    [
+        "http://localhost:8001/",
+        "http://127.0.0.1:8001/",
+        "http://192.168.1.20:8001/",
+    ],
+)
+async def test_localhost_and_lan_referers_are_not_blocked(
+    make_app: Callable[..., FastAPI], referer: str
+) -> None:
+    app = make_app(_security(exclude_paths=[]))
+    async with _client(app, f"203.0.113.{10 + len(referer)}") as client:
+        response = await client.get("/v1/models", headers={"Referer": referer})
+
+    assert response.status_code != 400
+
+
+async def test_attack_in_referer_is_still_blocked(
+    make_app: Callable[..., FastAPI],
+) -> None:
+    app = make_app(_security(exclude_paths=[]))
+    async with _client(app, "203.0.113.20") as client:
+        response = await client.get(
+            "/v1/models", headers={"Referer": "<script>alert(1)</script>"}
+        )
+
+    assert response.status_code == 400
+
+
 async def test_body_is_not_scanned_by_default(
     make_app: Callable[..., FastAPI],
 ) -> None:
